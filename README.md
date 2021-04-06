@@ -1,4 +1,4 @@
-Test task: wordpress
+Test task: WordPress
 ======================
 
 ## Steps:
@@ -27,7 +27,7 @@ ansible All -m ping
 
 ### remote:  
 ----------------------
-nano /etc/ssh/sshd_config
+/etc/ssh/sshd_config
 
     PubkeyAuthentication yes
     AuthorizedKeysFile .ssh/authorized_keys
