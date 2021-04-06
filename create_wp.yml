@@ -1,0 +1,6 @@
+---
+- name: "Create WordPress service"
+  hosts: all
+  become: yes
+  roles:
+    - ansible-role-wordpress
