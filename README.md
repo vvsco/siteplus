@@ -9,7 +9,7 @@ siteplus/ansible.cfg
 
     [defaults]
     inventory = hosts.ini
-    roles_path = ~/roles
+    roles_path = ./roles
     host_key_checking = yes
     log_path = siteplus.log
     bin_ansible_callbacks = True
@@ -47,5 +47,5 @@ yum install -y git
 git clone https://github.com/vvsco/siteplus.git  
 cd ~/siteplus
 git remote add wp https://github.com/vvsco/siteplus.git  
-ansible-galaxy install thorian93.ansible_role_wordpress --roles-path roles  
+ansible-galaxy install thorian93.ansible_role_wordpress --roles-path ./roles  
 
