@@ -9,7 +9,7 @@ siteplus/ansible.cfg
 
     [defaults]
     inventory = hosts.ini
-    roles_path = ./roles
+    #roles_path = ./roles
     host_key_checking = yes
     log_path = siteplus.log
     bin_ansible_callbacks = True
@@ -18,13 +18,12 @@ siteplus/ansible.cfg
     remote-user = root
     
 
+siteplus/hosts
 
-nano /etc/ansible/hosts
+    [WordPress]
+    siteplus-wp ansible_host=10.10.0.3
 
-    [test]
-    centos ansible_ssh_host=%remote%
-
-ansible test -m ping  
+ansible All -m ping  
 
 ### remote:  
 ----------------------
@@ -47,5 +46,6 @@ yum install -y git
 git clone https://github.com/vvsco/siteplus.git  
 cd ~/siteplus
 git remote add wp https://github.com/vvsco/siteplus.git  
+
 ansible-galaxy install thorian93.ansible_role_wordpress --roles-path ./roles  
 
