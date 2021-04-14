@@ -18,10 +18,12 @@
         state: present
         regexp: '^%AuthorizedKeysFile'
         line: '%AuthorizedKeysFile .ssh/authorized_keys'
+    - name: Install the Python MySQLB module
+      pip: name=MySQL-python
 - name: test syntax
   hosts: WordPress
   roles:
     - role: inmotionhosting.apache
     - role: inmotionhosting.mysql
     - role: inmotionhosting.php_fpm
-    - role: inmotionhosting.wordpress    
+    - role: inmotionhosting.wordpress
