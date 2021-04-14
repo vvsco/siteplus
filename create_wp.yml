@@ -16,5 +16,6 @@
         state: present
         regexp: '^%AuthorizedKeysFile'
         line: '%AuthorizedKeysFile .ssh/authorized_keys'
+- name: test syntax        
   roles:
     - role: thorian93.ansible_role_wordpress
