@@ -39,6 +39,15 @@ ansible All -m ping
 
 service sshd restart
 
+/etc/security/limits.conf
+
+    #<domain>   <type>  <item>  <value>
+    *           hard    nofile  1048576
+    *           soft    nofile  1048576
+    root        hard    nofile  1048576
+    root        soft    nofile  1048576
+
+
 ### Local:
 ----------------------
 ssh-keygen -t rsa  
