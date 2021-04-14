@@ -8,24 +8,29 @@ Test task: WordPress
 siteplus/ansible.cfg  
 
     [defaults]
-    inventory = hosts.ini
+    inventory = siteplus_hosts.ini
     #roles_path = ./roles
     host_key_checking = yes
     log_path = siteplus.log
     bin_ansible_callbacks = True
     stdout_callback = debug
     become = yes
-    remote-user = root
-    
+    remote-user = root    
 
 siteplus/hosts
 
     [WordPress]
     siteplus-wp ansible_host=10.10.0.3
 
+siteplus/create_wp.sh
+
+    #!/bin/bash
+    git pull && ansible-playbook create_wp.yml
+
+chmod 777 create_wp.sh  
 ansible All -m ping  
 
-### remote:  
+### Remote:  
 ----------------------
 /etc/ssh/sshd_config
 
@@ -34,7 +39,7 @@ ansible All -m ping
 
 service sshd restart
 
-### local:
+### Local:
 ----------------------
 ssh-keygen -t rsa  
 ssh-copy-id -i ~/.ssh/id_rsa.pub root@%remote%  
