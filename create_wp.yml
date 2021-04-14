@@ -1,6 +1,6 @@
 ---
-- name: Create WordPress service
-  hosts: WordPress
+- hosts: WordPress
+  name: Create WordPress service
   become: yes
   gather_facts: yes
   pre_tasks:
