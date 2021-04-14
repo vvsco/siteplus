@@ -1,5 +1,12 @@
-# Install a role from the Ansible Galaxy
-- src: inmotionhosting.wordpress
-- src: inmotionhosting.apache
-- src: inmotionhosting.mysql
-- src: inmotionhosting.php_fpm
+---
+roles:
+  # Install a role from Ansible Galaxy.
+  - name: inmotionhosting.wordpress
+  - name: inmotionhosting.apache
+  - name: inmotionhosting.mysql
+  - name: inmotionhosting.php_fpm
+
+collections:
+  # Install a collection from Ansible Galaxy.
+  - name: community.general
+  - name: ansible.posix

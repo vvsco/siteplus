@@ -24,9 +24,4 @@
     - role: inmotionhosting.apache
     - role: inmotionhosting.mysql
     - role: inmotionhosting.php_fpm
-    - role: inmotionhosting.wordpress
-    # nginx_proxy and redis are included conditionally from within the
-    # wordpress_ultrastack role
-    #- role: inmotionhosting.wordpress_ultrastack
-    #  vars:
-    #    use_ultrastack: false
+    - role: inmotionhosting.wordpress    
