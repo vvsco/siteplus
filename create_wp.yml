@@ -1,5 +1,5 @@
 ---
-- hosts: WordPress
+- hosts: all
   name: Create WordPress service
   become: yes
   gather_facts: yes
@@ -17,5 +17,6 @@
         regexp: '^%AuthorizedKeysFile'
         line: '%AuthorizedKeysFile .ssh/authorized_keys'
 - name: test syntax        
+  hosts: WordPress
   roles:
     - role: thorian93.ansible_role_wordpress
