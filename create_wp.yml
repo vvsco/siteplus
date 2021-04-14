@@ -1,13 +1,9 @@
 ---
-name: Create WordPress service
-  hosts: all
+- name: Create WordPress service
+  hosts: WordPress
   become: yes
-  gatcher_facts: yes
-  local_action: command source env.ini 
-  local_action: command ansible-galaxy install thorian93.ansible_role_wordpress
-
-- name: Pre-config
-  tasks:
+  gather_facts: yes
+  pre_tasks:
     - name: sshd config to accept pubkey PubkeyAuthentication
       lineinfile:
         dest: /etc/ssh/sshd_config
@@ -20,7 +16,5 @@ name: Create WordPress service
         state: present
         regexp: '^%AuthorizedKeysFile'
         line: '%AuthorizedKeysFile .ssh/authorized_keys'
-
-- name: WordPress
   roles:
-    - ansible-role-wordpress
+    - role: thorian93.ansible_role_wordpress
