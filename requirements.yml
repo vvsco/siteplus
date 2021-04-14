@@ -6,5 +6,5 @@
   src: inmotionhosting.mysql
   src: inmotionhosting.php_fpm
 #  src: inmotionhosting.wordpress
-  src: community.general
+#  src: community.general
 #  src: ansible.posix
