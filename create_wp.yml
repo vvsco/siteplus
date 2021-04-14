@@ -11,21 +11,16 @@
     - name: sshd config to accept pubkey
       lineinfile: dest="/etc/ssh/sshd_config" regexp="{{ item.regexp }}" line="{{ item.line }}" state=present
       with_items:
-        - { regexp: '^%PubkeyAuthentication', line: '%PubkeyAuthentication yes' }
-        - { regexp: '^%AuthorizedKeysFile', line: '%AuthorizedKeysFile .ssh/authorized_keys' }
+        - { regexp: '^PubkeyAuthentication', line: 'PubkeyAuthentication yes' }
+        - { regexp: '^AuthorizedKeysFile', line: 'AuthorizedKeysFile .ssh/authorized_keys' }
     - name: limits config for php
-      lineinfile:
-        dest: /etc/security/limits.conf
-        regexp: "{{ item.regexp }}"
-        line: "{{ item.line }}"
-        insertafter: EOF
-        state: present
+      lineinfile: dest="/etc/security/limits.conf" line="{{ item }}" state=present
       with_items:
-        - { regexp: '', line: '#<domain>   <type>  <item>  <value>' }
-        - { regexp: '', line: '*           hard    nofile  1048576' }
-        - { regexp: '', line: '*           soft    nofile  1048576' }
-        - { regexp: '', line: 'root        hard    nofile  1048576' }
-        - { regexp: '', line: 'root        soft    nofile  1048576' }
+        - '#<domain>   <type>  <item>  <value>'
+        - '*           hard    nofile  1048576'
+        - '*           soft    nofile  1048576'
+        - 'root        hard    nofile  1048576'
+        - 'root        soft    nofile  1048576'
 - name: Install WordPress
   hosts: WordPress
   roles:
