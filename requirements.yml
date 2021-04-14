@@ -1,6 +1,6 @@
 # Install a role from the Ansible Galaxy
 - src: inmotionhosting.wordpress_ultrastack
-  src: inmotionhosting.nginx_proxy
+- src: inmotionhosting.nginx_proxy
   src: inmotionhosting.redis
 #  src: inmotionhosting.apache
   src: inmotionhosting.mysql
