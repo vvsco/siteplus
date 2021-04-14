@@ -4,6 +4,8 @@
   become: yes
   gather_facts: yes
   pre_tasks:
+    - name: Update packages (this is equivalent to yum update -y)
+      yum: name=* state=latest
     - name: sshd config to accept pubkey PubkeyAuthentication
       lineinfile:
         dest: /etc/ssh/sshd_config
@@ -16,7 +18,15 @@
         state: present
         regexp: '^%AuthorizedKeysFile'
         line: '%AuthorizedKeysFile .ssh/authorized_keys'
-- name: test syntax        
+- name: test syntax
   hosts: WordPress
   roles:
-    - role: thorian93.ansible_role_wordpress
+    #- role: inmotionhosting.apache
+    #- role: inmotionhosting.mysql
+    #- role: inmotionhosting.php_fpm
+    #- role: inmotionhosting.wordpress
+    # nginx_proxy and redis are included conditionally from within the
+    # wordpress_ultrastack role
+    - role: inmotionhosting.wordpress_ultrastack
+      vars:
+        use_ultrastack: true

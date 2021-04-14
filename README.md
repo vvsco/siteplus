@@ -52,5 +52,6 @@ git clone https://github.com/vvsco/siteplus.git
 cd ~/siteplus
 git remote add wp https://github.com/vvsco/siteplus.git  
 
-ansible-galaxy install thorian93.ansible_role_wordpress --roles-path ./roles  
+-ansible-galaxy install thorian93.ansible_role_wordpress --roles-path ./roles  
+ansible-galaxy install inmotionhosting.wordpress_ultrastack --roles-path ./siteplus/roles  
 
