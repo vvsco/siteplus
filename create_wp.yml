@@ -6,6 +6,8 @@
   pre_tasks:
     - name: Update packages (this is equivalent to yum update -y)
       yum: name=* state=latest
+    - name: Install the Python MySQLB module
+      yum: name='MySQL-python' state=present
     - name: sshd config to accept pubkey PubkeyAuthentication
       lineinfile:
         dest: /etc/ssh/sshd_config
@@ -18,9 +20,7 @@
         state: present
         regexp: '^%AuthorizedKeysFile'
         line: '%AuthorizedKeysFile .ssh/authorized_keys'
-    - name: Install the Python MySQLB module
-      pip: name=MySQL-python
-- name: test syntax
+- name: Install WordPress
   hosts: WordPress
   roles:
     - role: inmotionhosting.apache
