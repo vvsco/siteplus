@@ -28,6 +28,3 @@
     - inmotionhosting.php_fpm
     - inmotionhosting.mysql
     - inmotionhosting.wordpress
-
-    ;rlimit_files = 1024
-    ;rlimit_core = 0
