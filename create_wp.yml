@@ -14,7 +14,7 @@
         - { regexp: '^PubkeyAuthentication', line: 'PubkeyAuthentication yes' }
         - { regexp: '^AuthorizedKeysFile', line: 'AuthorizedKeysFile .ssh/authorized_keys' }
     - name: limits config
-      lineinfile: dest="/etc/security/limits.conf" line="{{ item }}" state=present
+      lineinfile: dest="/etc/security/limits.conf" line="{{ item }}" state=present insertbefore='^# End of file'
       with_items:
         - '#<domain>   <type>  <item>  <value>'
         - '*           hard    nofile  1048576'
@@ -28,3 +28,6 @@
     - inmotionhosting.php_fpm
     - inmotionhosting.mysql
     - inmotionhosting.wordpress
+
+    ;rlimit_files = 1024
+    ;rlimit_core = 0
