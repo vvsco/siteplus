@@ -4,7 +4,7 @@
   become: yes
   gather_facts: yes
   pre_tasks:
-    - name: Update packages (this is equivalent to yum update -y)
+    - name: Update packages
       yum: name=* state=latest
     - name: Install the Python MySQL module
       yum: name='MySQL-python' state=present
@@ -23,8 +23,18 @@
         - 'root        soft    nofile  1048576'
 - name: Install WordPress
   hosts: WordPress
+  vars:
+    php_enable_php_fpm: true
+    apache_vhosts:
+      - servername: "www.example.com"
+        documentroot: "/var/www/example"
+        extra_parameters: |
+              ProxyPassMatch ^/(.*\.php(/.*)?)$ "fcgi://127.0.0.1:9000/var/www/example"
   roles:
-    - role: inmotionhosting.apache
+#    - role: inmotionhosting.apache
+#    - role: inmotionhosting.php_fpm
+    - geerlingguy.apache
+    - geerlingguy.php
+    - geerlingguy.apache-php-fpm
     - role: inmotionhosting.mysql
-    - role: inmotionhosting.php_fpm
     - role: inmotionhosting.wordpress
