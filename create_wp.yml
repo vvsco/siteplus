@@ -26,5 +26,7 @@
   roles:
     - inmotionhosting.apache
     - inmotionhosting.php_fpm
+      vars:
+        - php_ini_opcache_max_accelerated_files=1024
     - inmotionhosting.mysql
     - inmotionhosting.wordpress
