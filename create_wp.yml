@@ -29,12 +29,12 @@
       - servername: "www.example.com"
         documentroot: "/var/www/example"
         extra_parameters: |
-              ProxyPassMatch ^/(.*\.php(/.*)?)$ "fcgi://127.0.0.1:9000/var/www/example"
+          ProxyPassMatch ^/(.*\.php(/.*)?)$ "fcgi://127.0.0.1:9000/var/www/example"
   roles:
-#    - role: inmotionhosting.apache
-#    - role: inmotionhosting.php_fpm
+#    - inmotionhosting.apache
+#    - inmotionhosting.php_fpm
     - geerlingguy.apache
     - geerlingguy.php
     - geerlingguy.apache-php-fpm
-    - role: inmotionhosting.mysql
-    - role: inmotionhosting.wordpress
+    - inmotionhosting.mysql
+    - inmotionhosting.wordpress
