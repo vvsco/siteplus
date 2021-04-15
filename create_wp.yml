@@ -1,6 +1,6 @@
 ---
 - hosts: all
-  name: Create WordPress service
+  name: Initial host configuration
   become: yes
   gather_facts: yes
   pre_tasks:
@@ -13,7 +13,7 @@
       with_items:
         - { regexp: '^PubkeyAuthentication', line: 'PubkeyAuthentication yes' }
         - { regexp: '^AuthorizedKeysFile', line: 'AuthorizedKeysFile .ssh/authorized_keys' }
-    - name: limits config for php
+    - name: limits config
       lineinfile: dest="/etc/security/limits.conf" line="{{ item }}" state=present
       with_items:
         - '#<domain>   <type>  <item>  <value>'
@@ -21,20 +21,10 @@
         - '*           soft    nofile  1048576'
         - 'root        hard    nofile  1048576'
         - 'root        soft    nofile  1048576'
-- name: Install WordPress
+- name: Install WordPress service
   hosts: WordPress
-  vars:
-    php_enable_php_fpm: true
-    apache_vhosts:
-      - servername: "www.example.com"
-        documentroot: "/var/www/example"
-        extra_parameters: |
-          ProxyPassMatch ^/(.*\.php(/.*)?)$ "fcgi://127.0.0.1:9000/var/www/example"
   roles:
-#    - inmotionhosting.apache
-#    - inmotionhosting.php_fpm
-    - geerlingguy.apache
-    - geerlingguy.php
-    - geerlingguy.apache-php-fpm
+    - inmotionhosting.apache
+    - inmotionhosting.php_fpm
     - inmotionhosting.mysql
     - inmotionhosting.wordpress
