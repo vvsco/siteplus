@@ -5,10 +5,7 @@ roles:
   - name: inmotionhosting.apache
   - name: inmotionhosting.mysql
   - name: inmotionhosting.php_fpm
-  - name: geerlingguy.apache-php-fpm
-  - name: geerlingguy.apache
-  - name: geerlingguy.php
-
+  
 collections:
   # Install a collection from Ansible Galaxy.
   - name: community.general
