@@ -30,3 +30,9 @@
       vars:
         php_ini_rlimit_files: 0
     - inmotionhosting.wordpress
+- name: Install Monitoring
+  hosts: Monitoring
+  roles:
+    - lrk.prometheus
+#    - ome.docker
+#    - ome.prometheus

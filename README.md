@@ -48,6 +48,38 @@ service sshd restart
     root        soft    nofile  1048576
 
 
+### Prometheus
+----------------------
+yum clean all && yum update -y && yum install -y epel-release  
+cd /opt  
+wget https://github.com/prometheus/prometheus/releases/download/v2.26.0/prometheus-2.26.0.linux-amd64.tar.gz  
+tar zxvf prometheus-2.26.0.linux-amd64.tar.gz  
+cd prometheus-2.26.0.linux-amd64  
+/opt/prometheus-2.26.0.linux-amd64/prometheus.yml
+
+    global:
+    scrape_interval:     15s # Set the scrape interval to every 15 seconds. Default is every 1 minute.
+    evaluation_interval: 15s # Evaluate rules every 15 seconds. The default is every 1 minute.
+
+    alerting:
+    alertmanagers:
+    - static_configs:
+        - targets:
+        - alertmanager:9093
+
+    rule_files:
+    # - "first_rules.yml"
+    # - "second_rules.yml"
+
+    scrape_configs:
+    - job_name: 'prometheus'
+        static_configs:
+        - targets: ['localhost:9090']
+
+firewall-cmd --permanent --zone=public --add-port=9090/tcp  
+firewall-cmd --reload  
+./prometheus  
+
 ### Local:
 ----------------------
 ssh-keygen -t rsa  
